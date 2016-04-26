@@ -77,7 +77,9 @@ var myPosition = {
                 position: drawPath.origin,
                 title: "myPosition"
             }, function(marker) {
-				marker.getPosition( tracking.setMyPosition );
+				marker.getPosition( function(marker) {
+					tracking.myPosition = marker;
+				});
 			});
 			
 			tracking.notificationPush = false;
@@ -212,10 +214,6 @@ var tracking = {
 	distance: null,
 	markers: [],
 	notificationPush: false,
-	
-	setMyPosition: function(marker) {
-		tracking.myPosition = marker;
-	},
 	
 	markersInRange: function(item1,index1) {
 		if( Math.sqrt( Math.pow(item1.lat - tracking.myPosition.lat,2) + Math.pow(item1.lng - tracking.myPosition.lng,2) ) <= ( tracking.distance * 0.55 ) ) {
