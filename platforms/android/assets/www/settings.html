@@ -1,3 +1,51 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="other/bootstrap-3.3.5-dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/settings.css" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/settings.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        	<div id="scrollableDiv" class="container-fluid" style="overflow:auto; height:100%">
+                <div id="mapType" class="container-fluid">
+                    <h1 class="category">Type of map</h1>
+                    <div id="roadmapType" class="mapType" onclick="mapType.roadmap()">
+                        <h3 class="mapTypeText">Roadmap</h1>
+                        <div id="roadmapCheckbox" class="mapTypeButton"></div>
+                    </div>
+                    <br>
+                    <div id="satelliteType" class="mapType" onclick="mapType.satellite()">
+                        <h3 class="mapTypeText">satellite</h3>
+                        <div id="satelliteCheckbox" class="mapTypeButton"></div>
+                    </div>
+                </div>
+                <div id="rangeMap" class="container-fluid">
+                    <h1 class="category">Map zoom</h1>
+                    <div id="zoomDiv">
+                        <div id="zoomSlidebar">
+                            <input id="zoomBar" type="range" min="1.00000000" max="25.000000000" value="25.000000000" step="0.000001000" oninput="zoomMap.changeValueBar(this.value)"/>
+                        </div>
+                        <input id="zoomValueText" type="text" size="80" maxlength="11" oninput="zoomMap.changeValueText(this.value)"/>
+                    </div>
+                </div>
+              <div id="rangeDiv" class="container-fluid">
+                <h1 class="category">Map Range</h1>
+                <input id="rangeValueText" type="text" size="80" maxlength="11" oninput="zoomMap.changeValueText(this.value)"/>
+              </div>
+              <div id="saveId" style="margin-top: 200px">
+        	  	<input id="saveButton" class="category" type="button" onclick="settings.save()" value="Save"/>
+      	  	  </div>
+			</div>
+        </div>
+    </body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,25 +60,34 @@
     </head>
     <body>
         <div class="container">
-            <div id="mapType">
-                <h1 class="category">Type of map</h1>
-                <div id="roadmapType" class="mapType" onclick="checkbox.roadmap()">
-                    <h3 class="mapTypeText">Roadmap</h1>
-                    <div id="roadmapCheckbox" class="mapTypeButton"></div>
-                </div>
-                <br>
-                <div id="satelliteType" class="mapType" onclick="checkbox.satellite()">
-                    <h3 class="mapTypeText">satellite</h1>
-                    <div id="satelliteCheckbox" class="mapTypeButton"></div>
-                </div>
-            </div>
-            <div id="rangeMap">
-                <h1 class="category">Set range of map</h1>
-                <div id="rangeDiv">
-                    <div class="slideBar">
-                        <input id="zoomBar" type="range" min="1.00000000" max="25.000000000" value="25.000000000" step="0.000001000" oninput="slidebar.changeValueBar(this.value)"/>
+            <div id="scrollableDiv" class="container-fluid" style="overflow:auto; height:100%">
+                <div id="mapType" class="row">
+                    <h1 class="category">Type of map</h1>
+                    <div id="roadmapType" class="mapType, row" onclick="mapType.roadmap()">
+                        <h3 class="mapTypeText">Roadmap</h1>
+                            <div id="roadmapCheckbox" class="mapTypeButton"></div>
                     </div>
-                    <input id="valueText" type="text" size="80" maxlength="11" oninput="slidebar.changeValueText(this.value)"/>
+                    <br>
+                    <div id="satelliteType" class="mapType" onclick="mapType.satellite()">
+                        <h3 class="mapTypeText">satellite</h3>
+                        <div id="satelliteCheckbox" class="mapTypeButton"></div>
+                    </div>
+                </div>
+                <div id="rangeMap" class="row, container-fluid">
+                    <h1 class="category, row">Map zoom</h1>
+                    <div id="zoomDiv">
+                        <div id="zoomSlidebar" class="row">
+                            <input id="zoomBar" type="range" min="1.00000000" max="25.000000000" value="25.000000000" step="0.000001000" oninput="zoomMap.changeValueBar(this.value)"/>
+                        </div>
+                        <input id="zoomValueText" class="row" type="text" size="80" maxlength="11" oninput="zoomMap.changeValueText(this.value)"/>
+                    </div>
+                </div>
+                <div id="rangeDiv" class="row, content-fluid">
+                    <h1 class="category, row">Map Range</h1>
+                    <input id="rangeValueText" class="row" type="text" size="80" maxlength="11" oninput="zoomMap.changeValueText(this.value)"/>
+                </div>
+                <div id="saveId" class="row">
+                    <input id="saveButton" type="button" onclick="settings.save()" value="Save"/>
                 </div>
             </div>
         </div>

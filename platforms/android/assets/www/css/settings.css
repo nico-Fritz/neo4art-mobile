@@ -72,7 +72,7 @@ img {
     left: 0px;
 }
 
-#rangeDiv {
+#zoomDiv {
     position: relative;
     vertical-align: middle;
     width: 100%;
@@ -82,7 +82,7 @@ img {
     border-top: 1px solid white;
 }
 
-#rangeDiv #valueText {
+#zoomDiv #zoomValueText {
     background-color: darkslategray;
     text-align: center;
     margin-top: 15px;
@@ -93,8 +93,43 @@ img {
     border: 1px solid white;
 }
 
-#rangeDiv .slideBar {
+#zoomDiv #zoomSlidebar {
     margin-top: 15px;
     width: 100%;
     height: 20px;
+}
+
+#rangeDiv {
+	position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 110px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#rangeDiv #rangeValueText {
+    background-color: darkslategray;
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+#saveDiv {
+	position:relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 110px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#saveDiv #saveButton {
+	width: 100%;
 }

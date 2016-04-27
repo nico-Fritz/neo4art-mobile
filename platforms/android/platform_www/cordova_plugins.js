@@ -25,6 +25,13 @@ module.exports = [
         "clobbers": [
             "plugin.google.maps"
         ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -34,7 +41,8 @@ module.exports.metadata =
     "org.apache.cordova.geolocation": "0.3.12",
     "org.apache.cordova.inappbrowser": "0.6.0",
     "plugin.http.request": "1.0.4",
-    "plugin.google.maps": "1.2.9"
+    "plugin.google.maps": "1.2.9",
+    "phonegap-plugin-push": "1.6.3"
 };
 // BOTTOM OF METADATA
 });

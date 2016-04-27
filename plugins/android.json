@@ -18,6 +18,10 @@
         },
         "plugin.google.maps": {
             "PACKAGE_NAME": "org.neo4art.mobile"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "XXXXXXX",
+            "PACKAGE_NAME": "org.neo4art.mobile"
         }
     },
     "dependent_plugins": {

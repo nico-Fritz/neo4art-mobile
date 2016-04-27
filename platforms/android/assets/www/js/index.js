@@ -28,9 +28,18 @@ $(document).ajaxStop(function() {
 });
 
 $(document).ready(function() {
+	console.log("mapRange: "+ window.localStorage.getItem("mapRange") );
     document.addEventListener("backbutton", onBackKeyDown, false);
     
-    window.localStorage.clear();
+    //window.localStorage.clear();
+	if( window.localStorage.getItem("mapRange") === null ) {
+		window.localStorage.setItem("mapRange",5);
+	}
+	if( window.localStorage.getItem("notificationRange") === null ) {
+		window.localStorage.setItem("notificationRange",0.5)
+	}
+	console.log("notificationRange: "+ window.localStorage.getItem("notificationRange"));
+	window.localStorage.removeItem("info");
     $("#spinner").hide();
     errorPopup.close();
     $(".closeImg").append('<img src='+ base64image.closeImg +'>');
@@ -134,7 +143,7 @@ var app = {
         console.log("lat: "+lat+" long: "+lon);
         $.ajax({
             method : 'get',
-            url : 'http://nico-fritz.asuscomm.com:8080/GeolocationServlet/poi?lat='+ lat +'&lng='+ lon,
+            url : 'http://nico-fritz.asuscomm.com:8080/GeolocationServlet/poi?lat='+ lat +'&lng='+ lon + '&range=' + window.localStorage.getItem("mapRange"),
             dataType : 'json',
             
             success : function(result) {

@@ -1,6 +1,6 @@
 document.addEventListener("deviceready", function() {
     
-    slidebar.getValue();
+    zoomMap.getValue();
     
     if( window.localStorage.getItem("mapType") === "ROADMAP" ) {
         document.getElementById("roadmapCheckbox").innerHTML = '<img class="img" src="'+ base64image.check +'"/>';
@@ -28,12 +28,12 @@ document.addEventListener("deviceready", function() {
 
 var phoneEvent = {
     onBackKeyDown: function() {
-        window.localStorage.setItem( "mapZoom" , slidebar.value );
+        window.localStorage.setItem( "mapZoom" , zoomMap.value );
         window.location.href = "map.html";
     }
 };
 
-var checkbox = {
+var maptype = {
     roadmap: function() {
         console.log("check roadmap");
         document.getElementById("roadmapCheckbox").innerHTML = '"<img class="img" src="'+ base64image.check +'"/>';
@@ -49,18 +49,18 @@ var checkbox = {
     }
 }
 
-slidebar = {
+zoomMap = {
     value: 0,
     
     getValue: function() {
         this.value = window.localStorage.getItem("mapZoom");
         $("#zoomBar").val( this.value );
-        $("#valueText").val( this.value );
+        $("#zoomValueText").val( this.value );
     },
     
     changeValueBar: function( value ) {
         console.log(value);
-        $("#valueText").val( value );
+        $("#zoomValueText").val( value );
         this.value = value;
     },
     
@@ -69,6 +69,13 @@ slidebar = {
         $("#zoomBar").val( value );
         this.value = value;
     },
+};
+
+var settings = {
+	save: function() {
+		window.localStorage.setItem("mapRange",document.getElementById("rangeValueText").value);
+		console.log("saved: " + document.getElementById("rangeValueText").value);
+	}
 };
 
 var base64image = {

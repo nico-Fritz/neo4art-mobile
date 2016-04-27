@@ -4,9 +4,11 @@ var info;
 document.addEventListener("deviceready", function() {
     
     // Take the info from the json saved in index.js
-    info = JSON.parse( window.localStorage.getItem("info") );
-    console.log( info.length );
     console.log( info );
+	//if( window.localStorage.getItem("info") !== null ) {
+    	info = JSON.parse( window.localStorage.getItem("info") );
+	//}
+    console.log( info.length );
     
     document.addEventListener("backbutton", phoneEvent.onBackKeyDown , false);
     
@@ -17,6 +19,7 @@ document.addEventListener("deviceready", function() {
     if( window.localStorage.getItem("mapType") === null ) {
         window.localStorage.setItem("mapType" , "ROADMAP");
     }
+	tracking.distance = window.localStorage.getItem("notificationRange");
     
     // Wait until the map is ready status.
     map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
@@ -44,66 +47,81 @@ function onMapReady() {
     } else {
         map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
     }
-    
-    myPosition.mapPosition();
+	
+    myPosition.startFindPosition();
     readMarkers.initMarker();
 }
 
 var myPosition = {
-    // function that take the current position from gps, mobile internet, wifi or sim
-    mapPosition: function() {
-		"use strict";
-		navigator.geolocation.getCurrentPosition( 
-			this.onPositionSuccess,
-			this.onPositionError, 
+	
+	findPositionId: null,
+	
+	startFindPosition: function() {
+        myPosition.findPositionId = navigator.geolocation.watchPosition(myPosition.onPositionSuccess,
+                                                  myPosition.onPositionError,
 			{ maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
-	},
+    },
     
-    // if the position is found
-	onPositionSuccess: function(position) {
-		"use strict";
-        
-        //take the coords of current position
+    onPositionSuccess: function(position) {
+        "use strict";
+        console.log("position: " +position);
+		
 		var longitude = position.coords.longitude;
 		var latitude = position.coords.latitude;
 		drawPath.origin = new plugin.google.maps.LatLng( latitude , longitude );
-        map.setCenter( new plugin.google.maps.LatLng( latitude , longitude ) );
+        map.setCenter( drawPath.origin );
 		
 		map.addMarker(
             {
                 icon: 'blue',
                 position: drawPath.origin,
                 title: "myPosition"
-            }
-        );
-	},
+            }, function(marker) {
+				marker.getPosition( function(marker) {
+					tracking.myPosition = marker;
+				});
+			});
+			
+			tracking.notificationPush = false;
+			if( tracking.myPosition !== null ) {
+				if( readMarkers.markers !== [] ) {
+					readMarkers.markers.forEach( tracking.markersInRange );
+					if( tracking.notificationPush === true ) {
+						console.log( tracking.markers );
+					}
+				}
+			}
+    },
     
-    // if the position is not found
     onPositionError: function(error) {
-		"use strict";
+        "use strict";
 		var messaggio = "";
 		
 		switch (error.code) {
-            
+			   
 			case error.PositionError.PERMISSION_DENIED:
-				messaggio = "The application is not autorized to take actual position"
+				messaggio = "L'applicazione non è autorizzata all'acquisizione della posizione corrente";
 				break;
 				   
 			case error.PositionError.POSITION_UNAVAILABLE:
-				messaggio = "Actual position is not available";
+				messaggio = "Non è disponibile la rilevazione della posizione corrente";
 				break;
 				   
 			case error.PositionError.TIMEOUT:
-				messaggio = "Is not be able to take actual position";
+				messaggio = "Non è stato possibile rilevare la posizione corrente";
 				break;
-		} 
-		alert(messaggio);
-		
-	}
+		}
+		document.getElementById( "location" ).innerHTML = messaggio;
+    },
+    
+    stopFindPosition: function() {
+        navigator.geolocation.clearWatch( myPosition.findPositionId );
+    }
 };
 
 var readMarkers = {
     
+	markers: [],
     LatLngBounds: null,
     
     initMarker: function() {
@@ -140,7 +158,11 @@ var readMarkers = {
                 'markerClick': function(marker) {
                     readMarkers.markerListener(marker);
                 }
-            }
+            }, function(marker) {
+				marker.getPosition(function(marker1){
+					readMarkers.markers[i] = marker1;
+				});
+			}
         );
         // add this marker to the visible markers in the first view
         this.LatLngBounds.extend( new plugin.google.maps.LatLng( myMarker.lat , myMarker.lng ) );
@@ -175,24 +197,47 @@ var readMarkers = {
     
     // function that make visible in the first view all markers
     fitBounds: function() {
-        if( window.localStorage.getItem("mapZoom") === null ) {
             map.moveCamera({
                 'target': this.LatLngBounds
             });
             map.getCameraPosition( function(camera) {
                 console.log(camera);
-                window.localStorage.setItem( "mapZoom" , camera.zoom );
             });
-            console.log( window.localStorage.getItem( "mapZoom" ) );
-        } else {
-            map.moveCamera({
-                'target': this.LatLngBounds
-            });
-            map.setZoom(window.localStorage.getItem("mapZoom"));
-            console.log(window.localStorage.getItem("mapZoom"));
-        }
         console.log( this.LatLngBounds );
     }
+};
+
+var tracking = {
+	
+	myPosition: null,
+	equal: false,
+	distance: null,
+	markers: [],
+	notificationPush: false,
+	
+	markersInRange: function(item1,index1) {
+		if( Math.sqrt( Math.pow(item1.lat - tracking.myPosition.lat,2) + Math.pow(item1.lng - tracking.myPosition.lng,2) ) <= ( tracking.distance * 0.55 ) ) {
+							
+			tracking.markers.forEach( function(item2,index2) {
+				if( item2 === item1 ) {
+					tracking.equal = true;
+				}
+			});
+						
+			if( tracking.equal === false ) {
+				tracking.markers.push( item1 );
+				tracking.notificationPush = true;
+			}
+		} else {
+			tracking.markers.forEach( function(item2,index2) {
+				if( item2 === item1 ) {
+					tracking.markers.splice(index2,1);
+					tracking.notificationPush = true;
+				}
+			});
+		}
+				
+	}
 };
 
 var drawPath = {
