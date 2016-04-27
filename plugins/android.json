@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.neo4art.mobile"
+        },
+        "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "org.neo4art.mobile"
+        },
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "org.neo4art.mobile"
+        },
+        "plugin.google.maps": {
+            "PACKAGE_NAME": "org.neo4art.mobile"
+        }
+    },
+    "dependent_plugins": {
+        "plugin.http.request": {
+            "PACKAGE_NAME": "org.neo4art.mobile"
+        }
+    }
+}

@@ -1,0 +1,192 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+html{width:100%;height:100%;}
+body {
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+img {
+    position: absolute;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.img32 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#coverDiv {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.3;
+    visibility: hidden;
+}
+
+#divOptionImg {
+    left: 0px;
+    top: 0px;
+}
+
+.closeContainer {
+    position: relative;
+    width: 100%; 
+    height: 34px;
+}
+
+#infoMarker{
+    overflow-y: scroll;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    visibility: hidden;
+    background-color: #CCC;
+}
+
+#infoContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.closeImg {
+    right: 0px;
+    top: 0px;
+}
+
+.divInfo {
+    position: relative;
+    max-width: 100%;
+    max-height: 60%;
+}
+
+#title {
+    font-size:20px;
+    font-weight: bold;
+}
+
+.infoImg {
+    position: relative;
+    max-width: 100%;
+    min-height: 10%
+    max-height: 60%;
+    width: auto;
+    height: auto;
+    box-sizing: content-box;
+    border: 2px solid #ff0000;
+}
+
+#path {
+    width: 100%;
+    line-height:50px;
+    text-align:center;
+    background-color:#FFF;
+    border:1px solid #333;
+    border-radius:4px;
+    text-decoration: none;
+    font-family: 'Verdana';
+    font-size:20px;
+    font-weight: bold;
+    color:#333;
+}
+
+#optionMenu {
+    display: inline-block;
+    width: 0px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: #CCC;
+    transition: width .2s linear;
+}
+
+#optionMenu .logoContainer {
+    display: inline-block;
+    border: 1px solid red;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    max-width: 100%;
+    max-height: 50%;
+}
+
+#optionMenu .logo {
+    position: static;
+    background-color: white;
+    max-width: 100%;
+    max-height: 100%;
+    height:auto;
+}
+
+.optionMenuContainer {
+    position: static;
+}
+
+.optionButtonContainer {
+	position: static !important;
+}
+
+.optionButton {
+    position: static;
+    visibility: hidden;
+    max-width: 100%;
+    max-height: 50px;
+    width: 100%;;
+    height: 50px;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    transition: visibility .2s linear;
+}
+
+.optionButton-visible {
+    visibility: visible;
+}
