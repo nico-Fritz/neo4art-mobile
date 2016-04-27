@@ -1,0 +1,135 @@
+* {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+html {
+    width:100%;
+    height:100%;
+}
+
+body {
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+    background-color: black;
+}
+
+img {
+    position: absolute;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: white;
+}
+
+.category {
+    text-align: center
+}
+
+.mapType {
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 52px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+.mapTypeText {
+    vertical-align: middle;
+    position: absolute;
+}
+
+.mapTypeButton {
+    position: absolute;
+    height: 100%;
+    width: 50px;
+    right: 0px;
+    text-align: center;
+    border-left: 1px solid white;
+}
+
+.img {
+    top: 0px;
+    left: 0px;
+}
+
+#zoomDiv {
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 110px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#zoomDiv #zoomValueText {
+    background-color: darkslategray;
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+#zoomDiv #zoomSlidebar {
+    margin-top: 15px;
+    width: 100%;
+    height: 20px;
+}
+
+#rangeDiv {
+	position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 110px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#rangeDiv #rangeValueText {
+    background-color: darkslategray;
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+#saveDiv {
+	position:relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 110px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#saveDiv #saveButton {
+	width: 100%;
+}
